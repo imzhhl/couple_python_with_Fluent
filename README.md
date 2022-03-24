@@ -8,7 +8,7 @@
 
 # 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
-据说仅适用于R2014b-2018b，但亲测R2021a也可使用，安装是提示错误，无视即可
+据说仅适用于R2014b-2018b，但亲测R2021a也可使用，安装时提示错误，无视即可
 ```matlab
 % 实例化ORB对象
 orb = initialize_orb()
@@ -23,7 +23,7 @@ fluentResult = iFluentTuiInterpreter.doMenuCommandToString('report summary')
 ```
 
 ## 方法二：利用socket函数
-
+MATLAB为Server，UDF为Client
 ```matlab
 clc;
 clear all;
@@ -96,6 +96,7 @@ print(scheme.doMenuCommandToString("/mesh/check"))
 ```
 
 ## 方法二：利用socket接口完成FLuent UDf和python的通讯
+Python为Server，UDF为Client
 ```python
 import socket
 
