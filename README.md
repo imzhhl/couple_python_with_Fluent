@@ -1,4 +1,5 @@
-# fluent_corba
+# 方法一：fluent_corba
+参考链接为：https://github.com/ansys-dev/fluent_corba
 
 本模块提供对ansys fluent中CORBA连接的Python支持，作为后续开发pyfluent的基础模块。使用模块可以发送TUI和Scheme脚本命令到fluent实例，并自动去执行和返回结果。
 
@@ -56,7 +57,6 @@ scheme = fluentUnit.getSchemeControllerInstance()
 print(scheme.execSchemeToString(r'(read-case "E:\Workdata\Fluent_Python\base-design.msh")'))
 print(scheme.doMenuCommandToString("/mesh/check"))
 ```
+# 方法二：利用socket接口完成FLuent UDf和python的通讯
 
-## 问题反馈
-
-关注微信公众号：“ANSYS仿真与开发”，后台留言；或者邮件至：tguangs@163.com
+参考链接为：https://www.cnblogs.com/liusuanyatong/p/12081218.html
