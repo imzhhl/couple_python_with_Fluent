@@ -1,9 +1,10 @@
 **方法一：利用fluent中的corba接口**
+参考小田老师：https://github.com/imzhhl/fluent_corba
 
 **方法二：利用socket接口**
-参考硫酸老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
+参考硫酸亚铜老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
 
-**Fluent与MATLAB借助以上两种方法均可完成耦合计算**
+**Python与MATLAB借助以上两种方法均与Fluent完成耦合计算**
 
 # For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
