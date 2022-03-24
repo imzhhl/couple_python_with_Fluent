@@ -9,6 +9,8 @@
 # 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
 据说仅适用于R2014b-2018b，但亲测R2021a也可使用，安装时提示错误，无视即可
+### 使用方法
+通过以``-aas``批处理模式启动fluent，读取目录下的**aas_FluentId.txt**文件，然后通过CORBA连接到Fluent服务器发送TUI或者Scheme脚本命令。
 ```matlab
 % 实例化ORB对象
 orb = initialize_orb()
@@ -42,7 +44,7 @@ fclsoe(s);
 
 本模块依赖于ansys fluent提供的帮助文档，并使用来自于[omniORB](https://sourceforge.net/projects/omniorb/) 的编译库。
 
-## 安装使用
+### 安装使用
 
 预编译的二进制库目前只支持Windows x64平台的Python3.7、3.8版本，安装方法如下：
 	
@@ -50,7 +52,7 @@ fclsoe(s);
 
 `pip install fluent_corba-0.2.0-cp38-none-win_amd64.whl`
 
-## 使用方法
+### 使用方法
 通过以``-aas``批处理模式启动fluent，读取目录下的**aas_FluentId.txt**文件，然后通过CORBA连接到Fluent服务器发送TUI或者Scheme脚本命令。
 
 ```python
