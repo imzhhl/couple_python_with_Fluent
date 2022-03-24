@@ -1,12 +1,12 @@
-**方法一：利用fluent中的corba接口**
+**方法1：利用fluent中的corba接口**
 参考小田老师：https://github.com/imzhhl/fluent_corba
 
-**方法二：利用socket接口**
+**方法2：利用socket接口**
 参考硫酸亚铜老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
 
 **Python与MATLAB借助以上两种方法均与Fluent完成耦合计算**
 
-# For MATLAB
+# 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
 
 ```matlab
@@ -35,7 +35,7 @@ sprintf('%s',data)
 fwrite(s,'Hello FLuent')
 fclsoe(s);
 ```
-# For Python
+# 💡For Python
 ## 方法一：利用fluent_corba包
 参考链接为：https://github.com/ansys-dev/fluent_corba
 
