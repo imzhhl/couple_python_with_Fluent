@@ -1,6 +1,6 @@
-# 方法一：采用MATLAB的ANSYS_aas包
+# 方法一：利用MATLAB的ANSYS_aas包
 
-# 方法二：采用socket函数
+# 方法二：利用socket函数
 
 ```matlab
 clc;
