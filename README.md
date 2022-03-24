@@ -37,7 +37,6 @@ fclsoe(s);
 ```
 # 💡For Python
 ## 方法一：利用fluent_corba包
-参考链接为：https://github.com/ansys-dev/fluent_corba
 
 本模块提供对ansys fluent中CORBA连接的Python支持，作为后续开发pyfluent的基础模块。使用模块可以发送TUI和Scheme脚本命令到fluent实例，并自动去执行和返回结果。
 
