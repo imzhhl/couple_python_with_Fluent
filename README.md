@@ -4,7 +4,7 @@
 **方法2：利用socket接口**
 参考硫酸亚铜老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
 
-**Python与MATLAB借助以上两种方法均与Fluent完成耦合计算**
+**Python与MATLAB借助以上两种方法可与Fluent完成耦合计算/脚本**
 
 # 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
