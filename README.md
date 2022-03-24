@@ -8,7 +8,7 @@
 
 # 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
-
+据说仅适用于R2014b-2018b，但亲测R2021a也可使用，安装是提示错误，无视即可
 ```matlab
 % 实例化ORB对象
 orb = initialize_orb()
