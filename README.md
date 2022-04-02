@@ -99,7 +99,7 @@ print(scheme.execSchemeToString(r'(read-case "E:\Workdata\Fluent_Python\base-des
 print(scheme.doMenuCommandToString("/mesh/check"))
 ```
 
-## 方法二：利用socket接口完成FLuent UDf和python的通讯
+## 方法二：利用socket接口完成FLuent UDF和python的通讯
 Python为Server，UDF为Client
 ```python
 import socket
