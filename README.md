@@ -26,7 +26,7 @@ iFluentTuiInterpreter = iCoFluentUnit.getSchemeControllerInstance();
 fluentResult = iFluentTuiInterpreter.doMenuCommandToString('report summary') 
 ```
 
-## 方法二：利用socket函数
+## 方法二：利用socket接口
 MATLAB为Server，UDF为Client
 ```matlab
 clc;
@@ -99,7 +99,7 @@ print(scheme.execSchemeToString(r'(read-case "E:\Workdata\Fluent_Python\base-des
 print(scheme.doMenuCommandToString("/mesh/check"))
 ```
 
-## 方法二：利用socket接口完成FLuent UDF和python的通讯
+## 方法二：利用socket接口
 Python为Server，UDF为Client
 ```python
 import socket
