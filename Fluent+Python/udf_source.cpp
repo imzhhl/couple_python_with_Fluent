@@ -92,12 +92,13 @@ float FluentSocket(const std::string &sendMessage)
 /*Define on demand宏实例*/
 DEFINE_ON_DEMAND(demo)
 {
-	float a;
-	a=FluentSocket("10.0");
-	Message0("a=%f\n",a);
+	float received_data;
+	received_data=FluentSocket("10");
+	Message0("a=%f\n",received_data);
 }
 
 /*源项宏实例*/
+/*define source宏会自动循环计算域中所有的网格*/
 DEFINE_SOURCE(k_source, c, t ,dS, eqn)
 {
  float source;
@@ -108,10 +109,10 @@ DEFINE_SOURCE(k_source, c, t ,dS, eqn)
  send_data = C_T(c,t); 
  
  /*通过FluentSocket函数，发送神经网络的输入数据(send_data)，接收神经网络的输出数据(received_data)*/ 
- received_data = FluentSocket("gcvt(send_data)")
+ received_data = FluentSocket("gcvt(send_data)");
 
  /*将python返回的数据赋值给源项*/
- source = atof(received_data);
+ source = received_data;
 
  dS[eqn]=0;
  return source;
