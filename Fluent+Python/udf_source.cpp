@@ -89,6 +89,7 @@ float FluentSocket(const std::string &sendMessage)
 	::closesocket(s);
 	::WSACleanup();
 }
+
 /*Define on demand宏实例*/
 DEFINE_ON_DEMAND(demo)
 {
@@ -96,31 +97,6 @@ DEFINE_ON_DEMAND(demo)
 	received_data=FluentSocket("10");
 	Message0("a=%f\n",received_data);
 }
-
-/*源项宏实例*/
-/*define source宏会自动循环计算域中所有的网格*/
-DEFINE_SOURCE(demo_source, c, t ,dS, eqn)
-{
- int i;
- float source;
- float received_data;
- float send_data;
- char send_data_str[30];
- 
- /*利用函数宏提取数据，比如某个网格的温度*/
- send_data = C_UDS(c,t,i); 
- 
- /*通过FluentSocket函数，发送神经网络的输入数据(send_data)，接收神经网络的输出数据(received_data)*/ 
- gcvt(send_data, 8, send_data_str);
- received_data = FluentSocket(send_data_str);
-
- /*将python返回的数据赋值给源项*/
- source = received_data;
-
- dS[eqn]=0;
- return source;
-}
-
 
 /*初始化宏实例*/
 DEFINE_INIT(demo2,d)
@@ -146,4 +122,27 @@ DEFINE_INIT(demo2,d)
 	 }
 	 end_c_loop(c,t)
  }
+}
+
+/*源项宏实例*/
+/*define source宏会自动循环计算域中所有的网格*/
+DEFINE_SOURCE(demo_source, c, t ,dS, eqn)
+{
+ float source;
+ float received_data;
+ float send_data;
+ char send_data_str[30];
+ 
+ /*利用函数宏提取数据，比如某个网格的UDS*/
+ send_data = C_UDSI(c,t,0); 
+ 
+ /*通过FluentSocket函数，发送神经网络的输入数据(send_data)，接收神经网络的输出数据(received_data)*/ 
+ gcvt(send_data, 8, send_data_str);
+ received_data = FluentSocket(send_data_str);
+ //Message0("received_data=%f\n",received_data);
+ /*将python返回的数据赋值给源项*/
+ source = received_data;
+
+ dS[eqn]=0;
+ return source;
 }
