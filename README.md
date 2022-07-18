@@ -127,13 +127,13 @@ while True:
     connection,address = sock.accept()
     #-----------------------------------------------------------------------------------------------------------------------
     #下面进行UDF的数据操作...
-
-    send_data=3.14159
-    send_function(data)
     
-    received_dare = receive_function()
+    received_dare = receive_function() 
     print(f'{received_dare}')
     
+    send_data= str(float(received_dare)* 2.0 + 5.0)
+    send_function(send_data)
+     
     #UDF数据操作结束...
     # -----------------------------------------------------------------------------------------------------------------------
     # 关闭连接
