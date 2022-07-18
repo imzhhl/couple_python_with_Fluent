@@ -121,6 +121,10 @@ def receive_function():
     # 接收数据,并存入buf
     buf = connection.recv(40960)
     return(buf.decode('utf-8'))
+    
+def DNN(received_data):
+    #神经网络函数……
+    return 0
 
 while True:
     # 等待客户请求
@@ -131,7 +135,7 @@ while True:
     received_data = receive_function() 
     print(f'{received_data}')
     
-    send_data= str(float(received_data)* 2.0 + 5.0)
+    send_data= str(DNN(received_data))
     send_function(send_data)
      
     #UDF数据操作结束...
