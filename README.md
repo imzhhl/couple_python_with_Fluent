@@ -128,10 +128,10 @@ while True:
     #-----------------------------------------------------------------------------------------------------------------------
     #下面进行UDF的数据操作...
     
-    received_dare = receive_function() 
-    print(f'{received_dare}')
+    received_data = receive_function() 
+    print(f'{received_data}')
     
-    send_data= str(float(received_dare)* 2.0 + 5.0)
+    send_data= str(float(received_data)* 2.0 + 5.0)
     send_function(send_data)
      
     #UDF数据操作结束...
