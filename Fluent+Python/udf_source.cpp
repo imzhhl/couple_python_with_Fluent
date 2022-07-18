@@ -99,7 +99,7 @@ DEFINE_ON_DEMAND(demo)
 
 /*源项宏实例*/
 /*define source宏会自动循环计算域中所有的网格*/
-DEFINE_SOURCE(k_source, c, t ,dS, eqn)
+DEFINE_SOURCE(demo_source, c, t ,dS, eqn)
 {
  float source;
  float received_data;
