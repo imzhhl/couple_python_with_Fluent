@@ -101,13 +101,14 @@ DEFINE_ON_DEMAND(demo)
 /*define source宏会自动循环计算域中所有的网格*/
 DEFINE_SOURCE(demo_source, c, t ,dS, eqn)
 {
+ int i;
  float source;
  float received_data;
  float send_data;
  char send_data_str[30];
  
  /*利用函数宏提取数据，比如某个网格的温度*/
- send_data = C_T(c,t); 
+ send_data = C_UDS(c,t,i); 
  
  /*通过FluentSocket函数，发送神经网络的输入数据(send_data)，接收神经网络的输出数据(received_data)*/ 
  gcvt(send_data, 8, send_data_str);
@@ -118,4 +119,31 @@ DEFINE_SOURCE(demo_source, c, t ,dS, eqn)
 
  dS[eqn]=0;
  return source;
+}
+
+
+/*初始化宏实例*/
+DEFINE_INIT(demo2,d)
+{
+ float source;
+ float received_data;
+ float send_data;
+ char send_data_str[30];
+ cell_t c;
+ Thread *t;
+ thread_loop_c(t,d)
+ {
+	 begin_c_loop(c,t)
+	 {
+		 /*利用函数宏提取数据，比如某个网格的温度值*/
+		 send_data = C_T(c,t);
+ 
+		 /*通过FluentSocket函数，发送神经网络的输入数据(send_data)，接收神经网络的输出数据(received_data)*/ 
+		 /*在本实例中将所有网格的温度值通过python进行计算再反馈赋值给对应网格*/
+		 gcvt(send_data, 8, send_data_str);
+		 received_data = FluentSocket(send_data_str);
+		 C_T(c,t) = received_data;
+	 }
+	 end_c_loop(c,t)
+ }
 }
