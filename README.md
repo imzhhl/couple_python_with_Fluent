@@ -149,3 +149,7 @@ sock.close()
 ## 方法三：利用pyfluent包
 
 Fluent 2022R2版本推出了pyFluent，这实际上是提供了一个利用python访问Fluent进程的工具，利用此工具可以实现利用python控制Fluent，可以实现在不启用Fluent GUI的情况下，完成参数设置、计算求解以及或数据结果输出的功能。
+
+经过本人测试，这个方法非常好用，方法一可以淘汰了。
+
+帮助文档链接：https://fluentdocs.pyansys.com/index.html
