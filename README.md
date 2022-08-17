@@ -1,10 +1,10 @@
-**方法1：利用fluent中的corba接口**
+**方法1：利用fluent中的corba接口（可被方法3取缔）**
 参考小田老师：https://github.com/imzhhl/fluent_corba
 
 **方法2：利用socket接口**
 参考硫酸亚铜老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
 
-**方法3：利用pyFluent**
+**方法3：利用官方接口pyFluent**
 帮助文档链接：https://fluentdocs.pyansys.com/index.html
 
 
