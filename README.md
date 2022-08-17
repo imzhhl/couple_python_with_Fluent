@@ -157,3 +157,33 @@ Fluent 2022R2版本推出了pyFluent，这实际上是提供了一个利用pytho
 经过本人测试，这个方法非常好用，方法一可以淘汰了。
 
 帮助文档链接：https://fluentdocs.pyansys.com/index.html
+```
+import ansys.fluent.core as pyfluent
+import numpy as np
+import random
+import time
+import matplotlib.pyplot as plt
+#%% 利用pyFluent包连接fluent,该包的使用仅限于Fluent 2022R2以后版本
+
+# 定义工作目录
+import_filename = r'F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\fluent16-uniformmesh-0814'
+UDF_Path = r'F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\udf_source.c'
+
+session = pyfluent.launch_fluent(version = "2d", precision='double',processor_count = 1, show_gui=False)
+
+# 用工作站远程计算，连接现有的窗口
+# session = pyfluent.launch_fluent(ip='192.168.31.230', port=63993, start_instance=False)
+
+tui = session.solver.tui
+root = session.solver.root
+
+# 初始化patch
+tui.solve.patch('air', [], 'uds-0', 'no', '0')
+
+# fluent计算
+tui.solve.set.equations('flow', 'no')
+tui.solve.set.equations('ke', 'no')
+tui.solve.set.equations('uds-0', 'yes')
+tui.solve.iterate(10)
+
+```
