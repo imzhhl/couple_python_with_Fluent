@@ -4,6 +4,9 @@
 **方法2：利用socket接口**
 参考硫酸亚铜老师：https://www.cnblogs.com/liusuanyatong/p/12081218.html
 
+**方法3：利用pyFluent**
+帮助文档链接：https://fluentdocs.pyansys.com/index.html
+
 * Python与MATLAB借助以上两种方法可与Fluent完成耦合计算/自动化脚本
 
 * UDF函数的socket接口为C++编写，Fluent不支持直接编译，需要外部编译，或者使用VC++UDF Studio插件：https://vcudfstudio.bitbucket.io/
