@@ -157,7 +157,7 @@ Fluent 2022R2版本推出了pyFluent，这实际上是提供了一个利用pytho
 经过本人测试，这个方法非常好用，方法一可以淘汰了。
 
 帮助文档链接：https://fluentdocs.pyansys.com/index.html
-```
+```python
 import ansys.fluent.core as pyfluent
 import numpy as np
 import random
