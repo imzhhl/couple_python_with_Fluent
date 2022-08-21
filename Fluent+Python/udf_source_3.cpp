@@ -122,7 +122,7 @@ DEFINE_DIFFUSIVITY(diffu_coef,c,t,i)
     return C_R(c,t) * 2.88e-05 + C_MU_EFF(c,t) / 0.7;
 } 
 
-DEFINE_ON_DEMAND(socket)
+DEFINE_ON_DEMAND(python_udf_socket)
 {
 	float send_data;
 	char *send_data_str;
@@ -150,8 +150,8 @@ DEFINE_ON_DEMAND(socket)
 
 	direct_no1_x = atof(char_x);
 	direct_no1_y = atof(char_y);
-	
-	Message0("received_data=%s\n",received_data_str);
+
 	Message0("x = %f\n",direct_no1_x);
 	Message0("y = %f\n",direct_no1_y);
+	Message0("\n");
 }
