@@ -1,0 +1,22 @@
+﻿生成启动时间为 2022/8/23 16:40:26。
+     1>项目“F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\DllSocket\DllSocket.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“x64\Release\DllSocket.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\DllSocket.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.lib" /MACHINE:X64 /DLL x64\Release\socket.obj
+            正在创建库 F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.lib 和对象 F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.exp
+         正在生成代码
+         已完成代码的生成
+         DllSocket.vcxproj -> F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.dll
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\x64\Release\DllSocket.dll;#2" /manifest x64\Release\DllSocket.dll.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“x64\Release\DllSocket.unsuccessfulbuild”。
+         正在对“x64\Release\DllSocket.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\DllSocket\DllSocket.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.29

@@ -1,0 +1,14 @@
+﻿生成启动时间为 2022/8/23 11:30:09。
+     1>项目“F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\DllSocket\DllSocket.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“Debug\DllSocket.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\Debug\DllSocket.exe" /NOLOGO ws2_32.lib /MANIFEST /ManifestFile:"Debug\DllSocket.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\Debug\DllSocket.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\Debug\DllSocket.lib" /MACHINE:X86 Debug\socket.obj
+     1>LINK : fatal error LNK1561: 必须定义入口点
+     1>已完成生成项目“F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\DllSocket\DllSocket\DllSocket.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.05

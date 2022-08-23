@@ -1,0 +1,115 @@
+Auto-Transcript Start Time:  14:42:08, 23 Aug 2022 中国标准时间 
+Current Directory: "F:\ZHHL\TE_Doctor\CASES\case220626\python_fluent\python\DllSocket\fluentUDF"
+Information: The server has started and is running.
+
+              Welcome to ANSYS Fluent 2022 R2
+
+              Copyright 1987-2022 ANSYS, Inc. All Rights Reserved.
+              Unauthorized use, distribution or duplication is prohibited.
+              This product is subject to U.S. laws governing export and re-export.
+              For full Legal Notice, see documentation.
+
+Build Time: May 27 2022 08:53:57 EDT  Build Id: 10212  
+ 
+Connected License Server List:	1055@localhost
+
+*********************************************
+Info: Your license enables 4-way parallel execution.
+For faster simulations, please start the application with the appropriate parallel options.
+*********************************************
+
+Host spawning Node 0 on machine "ZHHL-PC" (win64).
+
+----------------------------------------------------------------------------------
+ID    Hostname  Core  O.S.         PID    Vendor                                 
+----------------------------------------------------------------------------------
+n0    ZHHL-PC   1/20  Windows-x64  16944  12th Gen Intel(R) Core(TM) i7-12700    
+host  ZHHL-PC         Windows-x64  5900   12th Gen Intel(R) Core(TM) i7-12700    
+
+MPI Option Selected: intel
+----------------------------------------------------------------------------------
+
+Cleanup script file is F:\\ZHHL\\TE_Doctor\\CASES\\case220626\\python_fluent\\python\\DllSocket\\fluentUDF\\cleanup-fluent-ZHHL-PC-5900.bat
+
+Opening wrapper library "C:\\PROGRA~1\\ANSYSI~1\\2022R2\\v222\\fluent\\..\\commonfiles\\AAS\\bin\\winx64\\COWrapper.dll"...
+
+Done.
+Loading "C:/PROGRA~1/ANSYSI~1/2022R2/v222/fluent/../commonfiles/AAS/bin/winx64/cowrapper.scm"
+Done.
+(define (aaslistener-func iter time-step) (display "<aaslistener> 
+") '() )aaslistener-func
+(define (aaslistener-func-freq) 1)aaslistener-func-freq
+(register-solution-monitor 'aaslistener-func aaslistener-func #f aaslistener-func-freq)monitor-lambdas
+(rpsetvar 'co-simulation/ior_ICoFluentUnit "IOR:010000002000000049444c3a4141535f434f5242412f49436f466c75656e74556e69743a312e3000010000000000000070000000010102000f0000003139322e3136382e33312e3232350000757900001b00000014010f00525354c5760463676406000100000001000000020000000002000000000000000800000001000000004f4154010000001800000001003a000100010001000000010001050901010000000000")#f
+(rp-var-define 'co-simulation/ior_ExceptionHolder "IOR:010000003000000049444c3a4141535f434f5242412f466c75656e742f49466c75656e74457863657074696f6e486f6c6465723a312e3000010000000000000070000000010102000f0000003139322e3136382e33312e3232350000737900001b00000014010f00525354c5760463975c06000000000001000000010000000002000000000000000800000001019009004f41540100000018000000010190090100010001000000010001050901010000000000" 'string #f)co-simulation/ior_exceptionholder
+(rpsetvar 'co-simulation/ior_ExceptionHolder "IOR:010000003000000049444c3a4141535f434f5242412f466c75656e742f49466c75656e74457863657074696f6e486f6c6465723a312e3000010000000000000070000000010102000f0000003139322e3136382e33312e3232350000737900001b00000014010f00525354c5760463975c06000000000001000000010000000002000000000000000800000001019009004f41540100000018000000010190090100010001000000010001050901010000000000")#f
+
+> (cx-gui-do cx-activate-item "Ribbon*Frame1*Frame4(User-Defined)*Table1*Table3(User Defined)*PushButton1(Functions)")
+(cx-gui-do cx-activate-item "MenuBar*PopupMenuFunctions*Compiled...")
+(cx-gui-do cx-activate-item "Compiled UDFs*PanelButtons*PushButton1(OK)")
+
+ZHHL-PC: Opening library "F:\\ZHHL\\TE_Doctor\\CASES\\case220626\\python_fluent\\python\\DllSocket\\fluentUDF\\libudf"...Done.
+
+ZHHL-PC: Opening library "F:\\ZHHL\\TE_Doctor\\CASES\\case220626\\python_fluent\\python\\DllSocket\\fluentUDF\\libudf"...
+	direct_source_no1
+	diffu_coef
+	python_udf_socket
+Done.
+(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame4(User-Defined)*Table1*Table3(User Defined)*PushButton4(Execute on Demand)")
+(cx-gui-do cx-set-list-selections "Execute on Demand*DropDownList1(Execute on Demand)" '( 1))
+(cx-gui-do cx-activate-item "Execute on Demand*DropDownList1(Execute on Demand)")
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton1(OK)")
+x = 1.000000
+y = 0.000000
+
+(cx-gui-do cx-activate-item "Execute on Demand*PanelButtons*PushButton2(Cancel)")
+(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame4(User-Defined)*Table1*Table3(User Defined)*PushButton1(Functions)")
+(cx-gui-do cx-activate-item "MenuBar*PopupMenuFunctions*Manage...")
+(cx-gui-do cx-set-list-selections "UDF Library Manager*Table1*List1(UDF Libraries)" '( 0))
+(cx-gui-do cx-activate-item "UDF Library Manager*Table1*List1(UDF Libraries)")
+(cx-gui-do cx-activate-item "UDF Library Manager*PanelButtons*PushButton4(Unload)")
+(cx-gui-do cx-activate-item "UDF Library Manager*PanelButtons*PushButton2(Cancel)")

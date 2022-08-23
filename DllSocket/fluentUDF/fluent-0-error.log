@@ -1,0 +1,20 @@
+Node 0 Fatal signal raised sig = Segmentation fault
+ e7aa2190 CX_Primitive_Error
+ d9410cc0 seh_filter_exe
+ e7b14880 logical_right_shift
+ c340ec30 _C_specific_handler
+ db532180 _chkstk
+ db4e1020 RtlRaiseException
+ db530da0 KiUserExceptionDispatcher
+ 9b0e1000 UDF_Inquire_Release
+ 9b0e1000 UDF_Inquire_Release
+ e58f87f0 fluent_fprintf
+ e7aff970 eval
+ e59a7e90 PRF_Command_Start
+ e59aa510 PRF_Node_repl
+ e59b5c00 Delay_Error
+ e7b14880 logical_right_shift
+ d99e7020 BaseThreadInitThunk
+ db4e2630 RtlUserThreadStart
+
+Error [node 0] [time 8/23/22 13:53:38] Abnormal Exit!
