@@ -1,5 +1,9 @@
 /************************************************************************************/
-/*python传递三个数据给fluent，fluent传递4个数据给python
+/*
+python与fluent互相传递多组数据
+python传递三个数据给fluent，fluent传递4个数据给python
+Author: Hongliang Zhang_WHU                                                                   
+Date:   2022-08-25
 */
 /************************************************************************************/
 
@@ -87,17 +91,17 @@ char *FluentSocket(const std::string &sendMessage)
     }
  
     /*注意此操作，否则fluent里面会乱码*/
-    recvInfo[returenValue] = '\0';
+	recvInfo[returenValue] = '\0';
 	return (recvInfo);
-    ::closesocket(s);
-    ::WSACleanup();
+	::closesocket(s);
+	::WSACleanup();
 }
 
 DEFINE_ON_DEMAND(python_udf_socket)
 {
 	double send_data_1, send_data_2, send_data_3, send_data_4; //定义将发送的4个数据
 	char send_data_str_1[40], send_data_str_2[40], send_data_str_3[40], send_data_str_4[40]; //定义将发送的4个字符串（double转化而来）
-	char space_str[] = " ";//用于分割不同数据
+	char space_str[] = " ";//用空格分割不同数据
 
 	char *received_data_str;
 	char *pEnd;
@@ -113,13 +117,10 @@ DEFINE_ON_DEMAND(python_udf_socket)
 	send_data_3 = 0.45;
 	send_data_4 = 0.00040;
 
-	// 把双精度浮点数send_data_1转换为字符串，存放在send_data_str_1中。
+	// 把双精度浮点数send_data转换为字符串，存放在send_data_str中
 	sprintf(send_data_str_1,"%.6f",send_data_1);
-	// 把双精度浮点数send_data_2转换为字符串，存放在send_data_str_2中。
 	sprintf(send_data_str_2,"%.6f",send_data_2);
-	// 把双精度浮点数send_data_3转换为字符串，存放在send_data_str_3中。
 	sprintf(send_data_str_3,"%.6f",send_data_3);
-	// 把双精度浮点数send_data_4转换为字符串，存放在send_data_str_4中。
 	sprintf(send_data_str_4,"%.6f",send_data_4);
 
 	//将send_data_str_1、send_data_str_2、send_data_str_3、send_data_str_4四个字符串连接在一起，存在send_data_str_total中，不同数据用空格分割
@@ -130,18 +131,19 @@ DEFINE_ON_DEMAND(python_udf_socket)
 	strcat(send_data_str_1, space_str);		
 	strcat(send_data_str_1, send_data_str_4);	
 
-
+	//通过socket接口传递数据
 	received_data_str = FluentSocket(send_data_str_1);
 	strcpy(temp, received_data_str);
 
-	/*将用空格隔开的字符串分割成双精度浮点数, python传递3个数给UDF*/
-    received_date_1 = strtod(temp, &pEnd);
-    received_date_2 = strtod(pEnd, &pEnd);
-    received_date_3 = strtod(pEnd, &pEnd);
+	//将用空格隔开的字符串分割成双精度浮点数, python传递3个数给UDF
+	received_date_1 = strtod(temp, &pEnd);
+	received_date_2 = strtod(pEnd, &pEnd);
+	received_date_3 = strtod(pEnd, &pEnd);
 
-    Message0("%.6f\n", received_date_1);
-    Message0("%.6f\n", received_date_2);
-    Message0("%.6f\n", received_date_3);	
+	Message0("\n");
+	Message0("%.6f\n", received_date_1);
+	Message0("%.6f\n", received_date_2);
+	Message0("%.6f\n", received_date_3);	
 	Message0("\n");
 	Message0("%s\n", send_data_str_1);
 }
