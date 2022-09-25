@@ -31,7 +31,8 @@ fluentResult = iFluentTuiInterpreter.doMenuCommandToString('report summary')
 ```
 
 ## 方法二：利用socket接口
-MATLAB为Server，UDF为Client
+
+MATLAB为Server，UDF为Client, TCP连接
 ```matlab
 clc;
 clear all;
@@ -42,6 +43,103 @@ data = fread(s)
 sprintf('%s',data)
 fwrite(s,'Hello FLuent')
 fclsoe(s);
+```
+MATLAB为Server，UDF为Client, UDP连接(来自https://zhuanlan.zhihu.com/p/567815434）
+
+UDF如下：
+```c
+#include "udf.h"
+#include <stdio.h>
+#include <winsock2.h>
+#include <winsock.h>
+#pragma comment(lib,"ws2_32.lib")
+int i = 0;
+double data = 12.5;//传输数据 可以是多个数据 采用数组的方式
+double fluentUDP(double temp1)   //每次传输调用一次
+{
+//1.初始化，使用socket()函数获取一个socket文件描述符
+    WSADATA wsaData;
+    WSAStartup(MAKEWORD(2, 2), &wsaData);
+    SOCKET sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+//2.绑定本地的相关信息，如果不绑定，则系统会随机分配一个端口号
+    struct sockaddr_in local_addr = {0};
+    local_addr.sin_family = AF_INET;//使用IPv4地址
+    local_addr.sin_addr.s_addr = inet_addr("xx.xxx.xxx.xxx");//本机IP地址
+    local_addr.sin_port = htons(8590);//端口
+    bind(sockfd, (struct sockaddr*)&local_addr, sizeof(local_addr));//将套接字和IP、端口绑定
+//3.发送数据到指定的ip和端口,'xx.xxx.xxx.xxx'表示目的ip地址，2589表示目的端口号 
+    struct sockaddr_in sock_addr = {0};
+    sock_addr.sin_family = AF_INET;                         // 设置地址族为IPv4
+    sock_addr.sin_port = htons(4901);			// 设置地址的端口号信息
+    sock_addr.sin_addr.s_addr = inet_addr("xx.xxx.xxx.xxx");//　设置IP地址
+//4.等待接收对方发送的数据 阻塞型
+    double recvbuf,sendbuf;
+    sendbuf = temp1;
+    struct sockaddr_in recv_addr;
+    int nSize=sizeof(recv_addr);
+    sendto(sockfd, (char *)&sendbuf, sizeof(sendbuf), 0, (struct sockaddr*)&sock_addr, sizeof(sock_addr));
+    Message("sendbuf=%f\n",sendbuf);
+    recvfrom(sockfd, (char *)&recvbuf, sizeof(recvbuf), 0,(struct sockaddr*)&recv_addr,&nSize);
+    Message("recvbuf=%f\n",recvbuf);
+    closesocket(sockfd);
+    WSACleanup();//停止Winsock
+    return recvbuf;
+}
+
+DEFINE_EXECUTE_AT_END(data_processing)
+{
+    #if RP_HOST
+        i = i + 1;
+        data = data + 12.5;
+	double recvbuf;
+	Message("Times=%d\n",i);
+	recvbuf = fluentUDP(data);//fluent先将data发送给Matlab 然后阻塞等待接受处理好后的数据，可以是一个数或者数组
+    #endif
+}
+
+```
+MATLAB如下：
+```matlab
+%使用前需要先确定接收到数据的个数，修改 number_of_double
+%按照数组的形式传输多个数据
+%先关闭之前可能存在的UDP
+clc;clear
+delete(instrfindall);
+%地址信息绑定
+ip = 'xx.xxx.xxx.xxx';
+local_port = 4901;
+remote_port = 8590;
+number_of_double = 1;%接收到数据的个数 这个是在simulink模块里面使用
+%配置udp，打开连接
+count = 0;
+u = udp(ip,'RemotePort',remote_port,'LocalPort',local_port);
+fopen(u);
+while(1)
+    %循环查询是否接收到数据
+    bytes = u.BytesAvailable;
+    if bytes > 0
+        %接受数据部分
+        count = count + 1
+        receive = fread(u);
+        matlab_receive_uint8 = uint8(receive)';
+        simout_unpack = sim('udp_unpack');%调用simulink模块，将uint8组合为double数据类型
+        matlab_receive_double = simout_unpack.matlab_receive_double.Data
+        %处理数据部分
+        disp('成功接收数据，开始处理')
+        matlab_send_double = matlab_receive_double + 12.5;%可另外写一个function函数进行数据处理然后发送到fluent
+        disp('成功处理数据，发送数据中...');
+        %发送数据部分
+        simout_pack = sim('udp_pack');%调用simulink模块，将double拆分为uint8数据类型
+        matlab_send_uint8 = simout_pack.matlab_send_uint8.Data;
+    	fwrite(u,matlab_send_uint8);
+        disp('数据已发送完成');
+    	disp('***********************');
+    end
+end
+fclose(u);
+delete(u);
+clear u;
+
 ```
 # 💡For Python
 ## 方法一：利用fluent_corba包
