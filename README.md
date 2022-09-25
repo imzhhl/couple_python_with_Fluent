@@ -32,7 +32,7 @@ fluentResult = iFluentTuiInterpreter.doMenuCommandToString('report summary')
 
 ## 方法二：利用socket接口
 
-MATLAB为Server，UDF为Client, TCP连接
+MATLAB为Server，UDF为Client, TCP连接(来自https://www.cnblogs.com/liusuanyatong/p/12081218.html)
 ```matlab
 clc;
 clear all;
@@ -44,6 +44,106 @@ sprintf('%s',data)
 fwrite(s,'Hello FLuent')
 fclsoe(s);
 ```
+UDF如下：
+```cpp
+/************************************/
+/* Copyright(c)**********************/
+/* All rights reserved.**************/
+/* Created on  2019-12-22 21:12:31***/
+/* @author: 硫酸亚铜******************/
+/************************************/
+ 
+#include "udf.h"
+#include <iostream>
+#include <string>
+ 
+#pragma comment(lib, "ws2_32.lib")
+ 
+/*socket的相关操作尽量单独写函数
+  否则连接失败可能会卡死fluent*/
+void FluentSocket(const std::string &sendMessage)
+{
+    WSADATA wsaData;
+    /*用于通讯的套接字*/
+    SOCKET s;
+    /*MATLAB地址的相关*/
+    SOCKADDR_IN matlabAddress;
+    /*接收Matlab发来的信息*/
+    char recvInfo[1024];
+    /*UDF接收发送数据的大小*/
+    int returenValue;
+    /*通讯接口*/
+    int Port = 10000;
+    /*用于格式化输出信息*/
+    std::string msg;
+ 
+    returenValue = ::WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (returenValue != 0)
+    {
+        AfxMessageBox(TEXT("Socket初始化失败！"), MB_OK);
+        return;
+    }
+ 
+    s = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (s == INVALID_SOCKET)
+    {
+        AfxMessageBox(TEXT("获取套接字失败！"), MB_OK);
+        ::WSACleanup();
+        return;
+    }
+ 
+    matlabAddress.sin_family = AF_INET;
+    /*设置端口*/
+    matlabAddress.sin_port = htons(Port);
+    /*设置地址*/
+    matlabAddress.sin_addr.S_un.S_addr = ::inet_addr("127.0.0.1");
+ 
+    if (::connect(s, (SOCKADDR *)&matlabAddress, sizeof(matlabAddress)) == SOCKET_ERROR)
+    {
+        msg = "Socket连接失败，错误码：";
+        msg += std::to_string(::WSAGetLastError());
+        AfxMessageBox((TEXT(msg.c_str())), MB_OK);
+        ::closesocket(s);
+        ::WSACleanup();
+        return;
+    }
+ 
+    returenValue = ::send(s, sendMessage.c_str(), sendMessage.size(), 0);
+    if (returenValue == SOCKET_ERROR)
+    {
+        msg = "Socket发送失败，错误码：";
+        msg += std::to_string(::WSAGetLastError());
+        AfxMessageBox(TEXT(msg.c_str()), MB_OK);
+        ::closesocket(s);
+        ::WSACleanup();
+        return;
+    }
+ 
+    returenValue = ::recv(s, recvInfo, sizeof(recvInfo), 0);
+    if (returenValue == SOCKET_ERROR)
+    {
+        msg = "Socket接收失败，错误码：";
+        msg += std::to_string(::WSAGetLastError());
+        AfxMessageBox(TEXT(msg.c_str()), MB_OK);
+        ::closesocket(s);
+        ::WSACleanup();
+        return;
+    }
+ 
+    /*注意此操作，否则fluent里面会乱码*/
+    recvInfo[returenValue] = '\0';
+    std::cout << recvInfo << std::endl;
+ 
+    ::closesocket(s);
+    ::WSACleanup();
+}
+ 
+DEFINE_ON_DEMAND(demo)
+{
+    FluentSocket("Hello Matlab!");
+}
+```
+
 MATLAB为Server，UDF为Client, UDP连接(来自https://zhuanlan.zhihu.com/p/567815434）
 
 UDF如下：
@@ -202,7 +302,7 @@ print(scheme.doMenuCommandToString("/mesh/check"))
 ```
 
 ## 方法二：利用socket接口
-Python为Server，UDF为Client
+Python为Server，UDF为Client, TCP连接
 ```python
 import socket
 
@@ -248,6 +348,46 @@ while True:
 # 关闭服务器
 sock.close()
 ```
+Python为Server，UDF为Client, UDP连接
+```python
+import socket
+
+#IPV4,TCP协议
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)#ipv4,udp
+#绑定ip和端口，bind接受的是一个元组
+sock.bind(('127.0.0.1',54377))
+
+while True:
+
+    #-----------------------------------------------------------------------------------------------------------------------
+    #下面进行UDF的数据操作...
+    
+    # 接收
+    received_data,clientAddress=sock.recvfrom(40960)
+    
+    # 转化为数组
+    received_data_str = received_data.split()
+    received_data_float = list(map(float, received_data_str)) 
+    print(f'{received_data_float[0]};{received_data_float[1]};{received_data_float[2]};{received_data_float[3]}')
+
+    # 发送的数据用空格隔开，然后组合成字符串
+    a = 10.2
+    b = 1.1221
+    c = 1002.12
+    space = ' '
+    send_data= str(a) + space + str(b) + space + str(c)
+    
+    # 发送
+    sock.sendto(bytes(send_data, encoding = "utf8"),clientAddress)
+     
+    #UDF数据操作结束...
+    # -----------------------------------------------------------------------------------------------------------------------
+    # 关闭连接
+    
+# 关闭服务器
+sock.close()
+```
+
 ## 方法三：利用pyFluent包
 
 Fluent 2022R2版本推出了pyFluent，这实际上是提供了一个利用python访问Fluent进程的工具，利用此工具可以实现利用python控制Fluent，可以实现在不启用Fluent GUI的情况下，完成参数设置、计算求解以及或数据结果输出的功能。
