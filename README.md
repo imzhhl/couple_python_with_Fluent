@@ -10,7 +10,7 @@
 
 * Python与MATLAB借助以上三种方法可与Fluent完成耦合计算/自动化脚本
 
-* UDF函数的socket接口为C++编写，Fluent不支持直接编译，需要外部编译，或者使用VC++UDF Studio插件：https://vcudfstudio.bitbucket.io/
+* UDF函数的socket接口为C++编写，Fluent不支持直接编译，需要外部编译（或将用于TCP/UDP数据交互的函数单独封装为动态链接库.dll，方法参考胡坤老师公众号：CFD之道），或者使用VC++UDF Studio插件：https://vcudfstudio.bitbucket.io/
 
 # 💡For MATLAB
 ## 方法一：利用MATLAB的ANSYS_aas包
